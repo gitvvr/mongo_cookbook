@@ -1,0 +1,11 @@
+Vagrant.configure("2") do |c|
+  c.berkshelf.enabled = false if Vagrant.has_plugin?("vagrant-berkshelf")
+  c.vm.box = "bento/ubuntu-14.04"
+  c.vm.hostname = "default-ubuntu-1404.vagrantup.com"
+  c.vm.synced_folder ".", "/vagrant", disabled: true
+  c.vm.synced_folder "C:/Users/varun/.kitchen/cache", "/tmp/omnibus/cache", create: true
+  c.vm.provider :virtualbox do |p|
+    p.name = "kitchen-mongo_cookbook-default-ubuntu-1404-c8e3545b-6b97-49af-900c-be829985d42f"
+    p.customize ["modifyvm", :id, "--audio", "none"]
+  end
+end
